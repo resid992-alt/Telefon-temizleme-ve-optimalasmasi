@@ -89,8 +89,8 @@ class MainActivity : Activity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (::wv.isInitialized) {
-            wv.evaluateJavascript("(window.handleBack && handleBack()) ? '1' : '0'") { res ->
-                if (res != ""1"") {
+            wv.evaluateJavascript("Boolean(window.handleBack && handleBack())") { res ->
+                if (res != "true") {
                     @Suppress("DEPRECATION")
                     super.onBackPressed()
                 }
